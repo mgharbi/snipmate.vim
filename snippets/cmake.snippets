@@ -1,0 +1,49 @@
+snippet template
+	cmake_minimum_required(VERSION 2.8)
+	# Project name
+	project(${1:project})
+
+	# Compiler flags
+	set(CMAKE_CXX_FLAGS "-O0 -ggdb3 -Wall")
+
+	# Sources
+	set(src main.cpp)
+
+	# Executable
+	add_executable(${2:exec} ${3:source})
+
+	#target_link_librairies()
+
+snippet opencv
+	find_package(OpenCV REQUIRED)
+
+snippet opencvlink
+	target_link_libraries(${1:target} ${OpenCV_LIBS})
+
+snippet exec
+	add_executable(${1:exec} ${2:exec_sources})
+
+snippet lib
+	add_library(${1:lib} SHARED ${2:lib_sources} )
+
+snippet link
+	target_link_libraries(${1:target} ${2:lib})
+
+snippet out
+	set_target_properties(${1:target} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${2:directory})
+
+snippet subdir
+	add_subdirectory(${1:subdir})
+
+snippet inc
+	include_directories(${1:dir})
+
+snippet if
+	if (${1:cond})
+		${2:# do}
+	else(${3:cond2})
+		${4:# do}
+	endif
+
+snippet mess
+	message(${1:message})
