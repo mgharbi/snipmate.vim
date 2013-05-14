@@ -3,16 +3,35 @@ snippet template
 	# Project name
 	project(${1:project})
 
-	# Compiler flags
+	# Compiler flags: no optimization, gdb-friendly, warnings
 	set(CMAKE_CXX_FLAGS "-O0 -ggdb3 -Wall")
+	message("CMAKE_BUILD_TYPE is ${CMAKE_BUILD_TYPE}")
+	message("Compiler flags: ${CMAKE_CXX_FLAGS}")
+
+	# Find external packages
+	#find_package(Boost COMPONENTS system filesystem REQUIRED)
+
+	# Directories
+	set(src "${CMAKE_CURRENT_SOURCE_DIR}/src")
+	set(bin "${CMAKE_CURRENT_SOURCE_DIR}/bin")
+	set(lib "${CMAKE_CURRENT_SOURCE_DIR}/lib")
+	set(inc "${CMAKE_CURRENT_SOURCE_DIR}/include")
+
+	add_subdirectory(src)
+	include_directories(src)
 
 	# Sources
-	set(src main.cpp)
+	file(GLOB main_src *.cpp)
+	#set(main_src main.c)
 
-	# Executable
-	add_executable(${2:exec} ${3:source})
+	add_executable(main ${main_src})
+	target_link_libraries(main 
+		#${OpenCV_LIBS}
+		#${Boost_SYSTEM_LIBRARY}
+		#${Boost_FILESYSTEM_LIBRARY}
+	)
 
-	#target_link_librairies()
+	set_target_properties(main PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${bin})
 
 snippet opencv
 	find_package(OpenCV REQUIRED)
