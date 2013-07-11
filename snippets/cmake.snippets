@@ -48,6 +48,9 @@ snippet lib
 snippet link
 	target_link_libraries(${1:target} ${2:lib})
 
+snippet find
+	find_package(${1:package} COMPONENTS ${2:component})
+
 snippet out
 	set_target_properties(${1:target} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${2:directory})
 

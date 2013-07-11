@@ -10,7 +10,7 @@ snippet mainn
 		return 0;
 	}
 # #include <...>
-snippet inc
+snippet inc c include
 	#include <${1:stdio}.h>${2}
 # #include "..."
 snippet Inc
@@ -63,12 +63,12 @@ snippet wh
 	}
 # For Loop
 snippet for
-	for(${2:i} = 0; $2 < ${1:count}; $2${3:++}){
+	for(${2:int i} = 0; $2 < ${1:count}; $2${3:++}){
 		${4:/* code */}
 	}
 # Custom For Loop
 snippet forr
-	for(${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}){
+	for(${1:int i} = ${2:0}; ${3:$1 < 10}; $1${4:++}){
 		${5:/* code */}
 	}
 # Function
