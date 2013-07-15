@@ -1,0 +1,57 @@
+snippet cl
+	classdef ${1:`substitute(Filename(), '^.', '\u&', '')`} < ${2:superclass}
+		properties (Access = protected)
+		end
+		properties (Access = public)
+		end
+		events
+		end
+		methods
+		end % methods
+	end %classdef
+
+snippet fun
+	function ${3:output} = ${1:function}(${2:input})
+		${4:% code}
+	end % $1
+
+snippet if
+	if ${1:condition}
+		${2:% code}
+	end
+
+snippet If
+	if ${1:condition}
+		${2:% code}
+	else
+		${3:% code}
+	end
+	
+snippet for
+	for ${1:condition}
+		${2:% code}
+	end
+
+snippet while
+	while ${1:condition}
+		${2:% code}
+	end
+
+snippet try
+	try
+		${1:% code}
+	catch
+		${2:% code}
+	end
+
+snippet testcase
+	classdef ${1:`substitute(Filename(), '^.', '\u&', '')`} < matlab.unittest.TestCase
+		methods (Test)
+			${2:% code}
+		end
+	end
+
+snippet test
+	function test${1:TestName}(testCase)
+		${2:% code}
+	end
