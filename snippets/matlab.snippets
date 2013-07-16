@@ -1,14 +1,19 @@
 snippet cl
 	classdef ${1:`substitute(Filename(), '^.', '\u&', '')`} < ${2:superclass}
-		properties (Access = protected)
+
+		properties(Access = protected)
 		end
-		properties (Access = public)
+
+		properties(Access = public)
 		end
+
 		events
 		end
+
 		methods
 		end % methods
-	end %classdef
+
+	end % classdef
 
 snippet fun
 	function ${3:output} = ${1:function}(${2:input})
@@ -44,14 +49,260 @@ snippet try
 		${2:% code}
 	end
 
+snippet exist file
+	exist(${1:filename},'file')
+
+# Test-related snippets
 snippet testcase
 	classdef ${1:`substitute(Filename(), '^.', '\u&', '')`} < matlab.unittest.TestCase
-		methods (Test)
-			${2:% code}
+
+		methods(TestClassSetup)
 		end
-	end
+
+		methods(TestClassTeardown)
+		end
+
+		methods(TestMethodSetup)
+		end
+
+		methods(TestMethodTeardown)
+		end
+
+		methods(Test)
+		end
+
+	end % classdef
 
 snippet test
 	function test${1:TestName}(testCase)
 		${2:% code}
 	end
+
+# Test assumptions
+snippet assume value is empty
+	assumeClass(testCase, ${1:actual}, ${2:className}, '${3:diagnostic}')
+
+snippet assume value is empty
+	assumeEmpty(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet assume value is equal to specified value
+	assumeEqual(testCase, ${1:actual}, ${2:expected}, '${3:diagnostic}')
+
+snippet assume function throws specified exception
+	assumeError(testCase, ${1:actual}, ${2:identifier}, '${3:diagnostic}')
+
+snippet assume unconditional assumption failure
+	assumeFail(testCase, '${3:diagnostic}')
+
+snippet assume value is false
+	assumeFalse(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet assume value is greater than specified value
+	assumeGreaterThan(testCase, ${1:actual}, ${2:floor}, '${3:diagnostic}')
+
+snippet assume value is greater than or equal to specified value
+	assumeGreaterThanOrEqual(testCase, ${1:actual}, ${2:floor}, '${3:diagnostic}')
+
+snippet assume value is object of specified type
+	assumeInstanceOf(testCase, ${1:actual}, ${2:className}, '${3:diagnostic}')
+
+snippet assume value has specified length
+	assumeLength(testCase, ${1:actual}, ${2:expectedLength}, '${3:diagnostic}')
+
+snippet assume value is less than specified value
+	assumeLessThan(testCase, ${1:actual}, ${2:ceiling}, '${3:diagnostic}')
+
+snippet assume is less than or equal to specified value
+	assumeLessThanOrEqual(testCase, ${1:actual}, ${2:ceiling}, '${3:diagnostic}')
+
+snippet assume string matches specified regular expression
+	assumeMatches(testCase, ${1:actual}, ${2:expression}, '${3:diagnostic}')
+
+snippet assume value is not empty
+	assumeNotEmpty(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet assume is not equal to specified value
+	assumeNotEqual(testCase, ${1:actual}, ${2:notExpected}, '${3:diagnostic}')
+
+snippet assume value is not handle to specified instance
+	assumeNotSameHandle(testCase, ${1:actual}, ${2:notExpected}, '${3:diagnostic}')
+
+snippet assume value has specified element count
+	assumeNumElements(testCase, ${1:actual}, ${2:expectedElementCount}, '${3:diagnostic}')
+
+snippet assume function returns true when evaluated
+	assumeReturnsTrue(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet assume two values are handles to same instance
+	assumeSameHandle(testCase, ${1:actual}, ${2:expected}, '${3:diagnostic}')
+
+snippet assume value has specified size
+	assumeSize(testCase, ${1:actual}, ${2:expectedSize}, '${3:diagnostic}')
+
+snippet assume string contains specified string
+	assumeSubstring(testCase, ${1:actual}, ${2:substring}, '${3:diagnostic}')
+
+snippet assume value meets specified constraint
+	assumeThat(testCase, ${1:actual}, ${2:constraint}, '${3:diagnostic}')
+
+snippet assume value is true
+	assumeTrue(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet assume function issues specified warning
+	assumeWarning(testCase, ${1:actual}, ${2:warningID}, '${3:diagnostic}')
+
+snippet assume function issues no warnings
+	assumeWarningFree(testCase, ${1:actual}, '${2:diagnostic}')
+
+# Test assertions
+snippet assert value is empty
+	assertClass(testCase, ${1:actual}, ${2:className}, '${3:diagnostic}')
+
+snippet assert value is empty
+	assertEmpty(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet assert value is equal to specified value
+	assertEqual(testCase, ${1:actual}, ${2:expected}, '${3:diagnostic}')
+
+snippet assert function throws specified exception
+	assertError(testCase, ${1:actual}, ${2:identifier}, '${3:diagnostic}')
+
+snippet assert unconditional assumption failure
+	assertFail(testCase, '${3:diagnostic}')
+
+snippet assert value is false
+	assertFalse(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet assert value is greater than specified value
+	assertGreaterThan(testCase, ${1:actual}, ${2:floor}, '${3:diagnostic}')
+
+snippet assert value is greater than or equal to specified value
+	assertGreaterThanOrEqual(testCase, ${1:actual}, ${2:floor}, '${3:diagnostic}')
+
+snippet assert value is object of specified type
+	assertInstanceOf(testCase, ${1:actual}, ${2:className}, '${3:diagnostic}')
+
+snippet assert value has specified length
+	assertLength(testCase, ${1:actual}, ${2:expectedLength}, '${3:diagnostic}')
+
+snippet assert value is less than specified value
+	assertLessThan(testCase, ${1:actual}, ${2:ceiling}, '${3:diagnostic}')
+
+snippet assert is less than or equal to specified value
+	assertLessThanOrEqual(testCase, ${1:actual}, ${2:ceiling}, '${3:diagnostic}')
+
+snippet assert string matches specified regular expression
+	assertMatches(testCase, ${1:actual}, ${2:expression}, '${3:diagnostic}')
+
+snippet assert value is not empty
+	assertNotEmpty(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet assert is not equal to specified value
+	assertNotEqual(testCase, ${1:actual}, ${2:notExpected}, '${3:diagnostic}')
+
+snippet assert value is not handle to specified instance
+	assertNotSameHandle(testCase, ${1:actual}, ${2:notExpected}, '${3:diagnostic}')
+
+snippet assert value has specified element count
+	assertNumElements(testCase, ${1:actual}, ${2:expectedElementCount}, '${3:diagnostic}')
+
+snippet assert function returns true when evaluated
+	assertReturnsTrue(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet assert two values are handles to same instance
+	assertSameHandle(testCase, ${1:actual}, ${2:expected}, '${3:diagnostic}')
+
+snippet assert value has specified size
+	assertSize(testCase, ${1:actual}, ${2:expectedSize}, '${3:diagnostic}')
+
+snippet assert string contains specified string
+	assertSubstring(testCase, ${1:actual}, ${2:substring}, '${3:diagnostic}')
+
+snippet assert value meets specified constraint
+	assertThat(testCase, ${1:actual}, ${2:constraint}, '${3:diagnostic}')
+
+snippet assert value is true
+	assertTrue(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet assert function issues specified warning
+	assertWarning(testCase, ${1:actual}, ${2:warningID}, '${3:diagnostic}')
+
+snippet assert function issues no warnings
+	assertWarningFree(testCase, ${1:actual}, '${2:diagnostic}')
+
+
+# Test verifications
+snippet verify value is empty
+	verifyClass(testCase, ${1:actual}, ${2:className}, '${3:diagnostic}')
+
+snippet verify value is empty
+	verifyEmpty(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet verify value is equal to specified value
+	verifyEqual(testCase, ${1:actual}, ${2:expected}, '${3:diagnostic}')
+
+snippet verify function throws specified exception
+	verifyError(testCase, ${1:actual}, ${2:identifier}, '${3:diagnostic}')
+
+snippet verify unconditional assumption failure
+	verifyFail(testCase, '${3:diagnostic}')
+
+snippet verify value is false
+	verifyFalse(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet verify value is greater than specified value
+	verifyGreaterThan(testCase, ${1:actual}, ${2:floor}, '${3:diagnostic}')
+
+snippet verify value is greater than or equal to specified value
+	verifyGreaterThanOrEqual(testCase, ${1:actual}, ${2:floor}, '${3:diagnostic}')
+
+snippet verify value is object of specified type
+	verifyInstanceOf(testCase, ${1:actual}, ${2:className}, '${3:diagnostic}')
+
+snippet verify value has specified length
+	verifyLength(testCase, ${1:actual}, ${2:expectedLength}, '${3:diagnostic}')
+
+snippet verify value is less than specified value
+	verifyLessThan(testCase, ${1:actual}, ${2:ceiling}, '${3:diagnostic}')
+
+snippet verify is less than or equal to specified value
+	verifyLessThanOrEqual(testCase, ${1:actual}, ${2:ceiling}, '${3:diagnostic}')
+
+snippet verify string matches specified regular expression
+	verifyMatches(testCase, ${1:actual}, ${2:expression}, '${3:diagnostic}')
+
+snippet verify value is not empty
+	verifyNotEmpty(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet verify is not equal to specified value
+	verifyNotEqual(testCase, ${1:actual}, ${2:notExpected}, '${3:diagnostic}')
+
+snippet verify value is not handle to specified instance
+	verifyNotSameHandle(testCase, ${1:actual}, ${2:notExpected}, '${3:diagnostic}')
+
+snippet verify value has specified element count
+	verifyNumElements(testCase, ${1:actual}, ${2:expectedElementCount}, '${3:diagnostic}')
+
+snippet verify function returns true when evaluated
+	verifyReturnsTrue(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet verify two values are handles to same instance
+	verifySameHandle(testCase, ${1:actual}, ${2:expected}, '${3:diagnostic}')
+
+snippet verify value has specified size
+	verifySize(testCase, ${1:actual}, ${2:expectedSize}, '${3:diagnostic}')
+
+snippet verify string contains specified string
+	verifySubstring(testCase, ${1:actual}, ${2:substring}, '${3:diagnostic}')
+
+snippet verify value meets specified constraint
+	verifyThat(testCase, ${1:actual}, ${2:constraint}, '${3:diagnostic}')
+
+snippet verify value is true
+	verifyTrue(testCase, ${1:actual}, '${2:diagnostic}')
+
+snippet verify function issues specified warning
+	verifyWarning(testCase, ${1:actual}, ${2:warningID}, '${3:diagnostic}')
+
+snippet verify function issues no warnings
+	verifyWarningFree(testCase, ${1:actual}, '${2:diagnostic}')
