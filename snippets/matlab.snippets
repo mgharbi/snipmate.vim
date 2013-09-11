@@ -20,6 +20,11 @@ snippet fun
 		${4:% code}
 	end % $1
 
+snippet Fun
+	function ${1:function}(${2:input})
+		${3:% code}
+	end % $1
+
 snippet if
 	if ${1:condition}
 		${2:% code}
@@ -52,6 +57,9 @@ snippet try
 snippet exist file
 	exist(${1:filename},'file')
 
+snippet exist variable
+	exist(${1:filename},'var')
+
 # Test-related snippets
 snippet testcase
 	classdef ${1:`substitute(Filename(), '^.', '\u&', '')`} < matlab.unittest.TestCase
@@ -77,6 +85,23 @@ snippet test
 	function test${1:TestName}(testCase)
 		${2:% code}
 	end
+
+snippet testsuite from class
+	TestSuite.fromClass(?${1:className})
+
+snippet testsuite from file
+	TestSuite.fromFile('${1:filename}')
+
+snippet testsuite from folder
+	TestSuite.fromFolder(?${1:folder})
+
+snippet testsuite from method
+	TestSuite.fromMethod(?${1:class},'test${2:Method}')
+
+snippet tester
+	import matlab.unittest.TestSuite;
+
+	results = ${1:testSuite}.run
 
 # Test assumptions
 snippet assume value is empty
